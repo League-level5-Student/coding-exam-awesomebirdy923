@@ -21,6 +21,14 @@ public class CodingExamA {
 		 * 
 		 * See the Coding_Exam_A_Demo.jar for an example of what the finished product should look like.
 		 */
-
+		int robotCount = Integer.parseInt(JOptionPane.showInputDialog("How many robots:"));
+		String color = JOptionPane.showInputDialog("What color:");
+		int sides = Integer.parseInt(JOptionPane.showInputDialog("Sides:"));
+		Thread[] threads = new Thread[robotCount];
+		for (int i = 0; i < threads.length; i++) {
+			threads[i] = new Thread(()->{
+				
+			});
+		}
 	}
 }
