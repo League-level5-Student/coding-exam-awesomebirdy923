@@ -26,9 +26,35 @@ public class CodingExamA {
 		int sides = Integer.parseInt(JOptionPane.showInputDialog("Sides:"));
 		Thread[] threads = new Thread[robotCount];
 		for (int i = 0; i < threads.length; i++) {
+			final int x = i;
 			threads[i] = new Thread(()->{
-				
+				Robot robot = new Robot(x*150, 100);
+				robot.penDown();
+				if(color.equalsIgnoreCase("red")) {
+					robot.setPenColor(Color.RED);
+				} else if(color.equalsIgnoreCase("green")) {
+					robot.setPenColor(Color.GREEN);
+				} else if(color.equalsIgnoreCase("blue")) {
+					robot.setPenColor(Color.BLUE);
+				} else if(color.equalsIgnoreCase("yellow")) {
+					robot.setPenColor(Color.YELLOW);
+				} else {
+					JOptionPane.showMessageDialog(null, "That color doesn't exist!");
+					System.exit(1);
+				}
+				for (int j = 0; j < sides; j++) {
+					robot.move(360/sides);
+					robot.turn(360/sides);
+				}
 			});
+			try {
+				threads[i].join();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		for (int i = 0; i < threads.length; i++) {
+			threads[i].start();
 		}
 	}
 }
